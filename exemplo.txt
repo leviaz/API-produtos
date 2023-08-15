@@ -1,0 +1,42 @@
+Objetivo:
+API RESTful para controle de produtos
+
+Modelo:
+      Produto : id, nome, quantidade, valor, observacao
+Repositório de produto
+  obterTodos
+  obterPorId
+  cadastrar
+  atualizarProduto
+  deletarProduto
+
+Serviço de produto:
+  obterTodos
+  obterPorId
+  cadastrar
+  atualizarProduto
+  deletarProduto
+
+Controller de produtos:
+  obterTodos
+  obterPorId
+  cadastrar
+  atualizarProduto
+  deletarProduto
+
+  Cria-se uma exception que irá extender diretamente da classe de exceptions nativa do Java, cria-se uma classe error para enviar titulo, status e mensagem, que será administrado por um handler
+  a classe handler receberá as anotações do spring para criar e encaminhar os erros ao trhow do repostitorio que por sua vez cria uma nova exception que extende da classe nativa do java, emitindo a mensagem
+  do errorMensagem.
+
+
+ModelMapper:
+Converterá os objetos de um tipo a outro possibilitando converter os tipos assim,
+o controller irá receber um request que será convertido a DTO para que o service trate
+, retornando para ser convertido a Response para que o response entity retorne
+Arquitetura:
+ Model contém o objeto base para o banco
+ Repository contém repostitorio JPA
+ Service conterá o service que realiza as validações e trabalha com o recepção e retorno de DTOs
+ Shared conterá o DTO
+ View é uma pasta que trabalha com a visão do backend (controlador)
+ Logo conterá os modelos de request e response que serão direcionados pelo Controller, sendo modelos especificos de saida e entrada
