@@ -127,4 +127,19 @@ public class ProdutoService {
         .collect(Collectors.toList());
   }
 
+  public ProdutoDTO atualizarValor(Integer id, Double valor) {
+    Optional<Produto> produto = produtoRepository.findById(id);
+    if (produto.isEmpty()) {
+      throw new ResourceNotFoundExcepetion("Produto com id: " + id + " não encontrado, logo não foi possível deletar");
+    }
+
+    Produto produtoOpen = produto.get();
+    produtoOpen.setValor(valor);
+    ModelMapper mapper = new ModelMapper();
+    ProdutoDTO produtoOpenDto = mapper.map(produtoOpen, ProdutoDTO.class);
+    atualizarProduto(id, produtoOpenDto);
+    return produtoOpenDto;
+
+  }
+
 }

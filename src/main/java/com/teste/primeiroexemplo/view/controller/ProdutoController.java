@@ -107,4 +107,13 @@ public class ProdutoController {
 
   }
 
+  @PutMapping("/{id}/price/{valor}")
+  public ResponseEntity<ProdutoResponse> atualizarPreco(@PathVariable Integer id, @PathVariable Double valor) {
+    ProdutoDTO dtoAtualizado = produtoService.atualizarValor(id, valor);
+    ModelMapper mapper = new ModelMapper();
+    ProdutoResponse respostaAtt = mapper.map(dtoAtualizado, ProdutoResponse.class);
+    return new ResponseEntity<ProdutoResponse>(respostaAtt, HttpStatus.OK);
+
+  }
+
 }
